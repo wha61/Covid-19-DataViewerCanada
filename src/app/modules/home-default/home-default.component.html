@@ -1,0 +1,112 @@
+<body style="background-color:brown;">
+  <!-- <h1 class=" bg-white text-center p-2 m-2">FinalProject-COVID19-DataViewer-Canada</h1> -->
+  <h1 class="ui bg-white text-center p-3 m-3">
+    <div class="content" style="font-size:40px;">
+      <i class="h square icon"></i>
+      FinalProject-COVID19-DataViewer-Canada
+      <div class="sub header" style="font-size: medium;">By Wenxiang He, 301417521</div>
+    </div>
+  </h1>
+<div class=" bg-white text-center p-3 m-3 " style="font-size:large;">
+    <!-- <p (load)="fillTable()">Current date is: {{this.now}}</p> -->
+    <p>Current date is: {{this.now}}</p>
+    <p>You can check data before: {{timeStyle}} (As data of today is not uploaded yet)</p>
+    <p id="timeType" class="ui input focus">Time Period:
+      From<input type="text" [(ngModel)]="timeAfter" placeholder="format: dd-mm-yyyy" >
+       to <input type="text" [(ngModel)]="timeBefore" placeholder="format: dd-mm-yyyy" >
+
+      <button id="forDisable" style="display:initial" (click)="fillBasicTable(); fillFederalTable()">show data</button>
+      <button id="forEnable" style="display: none;" (click)="fillEnableRegionTable(); fillFederalTable()">show data</button>
+    </p>
+    <p style="color: red;">Once click show data button, if the part below is blank, please wait a second for data to be loaded<br>
+      As when the time period is long, it takes time to load the data.</p>
+
+</div>
+
+<div class=" bg-white text-center p-3 m-3 " style="font-size:x-large;">
+  <p>Overall Canada Federal Data</p>
+</div>
+
+<div class="text-center p-2 m-3 ">
+  <table class="ui selectable inverted table p-3 m-0">
+  <thead>
+    <tr>
+    <th>Federal</th>
+    <th>New Cases</th>
+    <th>Cumulative Cases</th>
+    <th>New Deaths</th>
+    <th>Cumulative Deaths</th>
+    <th>New Recovered</th>
+    <th>Cumulative Recovered</th>
+    </tr>
+  </thead>
+  <tbody id="fed">
+
+  </tbody>
+</table>
+</div>
+
+  <!-- <div class="ui input focus">
+    <input type="text" [(ngModel)]="time" placeholder="Enter your time here" >
+  </div> -->
+  
+  <div class=" bg-white text-center p-3 m-3 " style="font-size:x-large;">
+    <p>Detailed Province and region Data</p>
+
+    <p>
+      <button (click)="fillEnableRegionTable()" class="btn btn-outline-primary">Enable region</button>
+      <button (click)="fillBasicTable()" class="btn btn-outline-primary">Disable region</button>
+      (Enable/Disable region to change data between Provincial and Regional)
+    </p>
+  </div>
+  
+  <div class=" bg-white text-center p-3 m-3 " >
+    <!-- <p style="font-size: large; padding: auto;margin: auto;">Detailed Province and region Data </p> -->
+    <table class="ui selectable inverted table p-4 m-0" id="detail">
+      <thead id="cols">
+        <tr>
+        <th>Province</th>
+        <th>New Cases</th>
+        <th>New Deaths</th>
+        <th>New Recovered</th>
+        </tr>
+    </thead>
+      <tbody id="data">
+
+      </tbody>
+    </table>
+    
+    <br>
+
+    <button id="forB" style="display: initial;" (click)="fillCharts()" class="btn btn-outline-primary">show corresponding charts</button>
+    <button id="forR"style="display: none;" (click)="fillCharts2()" class="btn btn-outline-primary">show corresponding charts</button>
+    <div id="charts" >
+
+      <div class="text-center"  style="border:1px solid black; width:90%; height: 50%; margin-top: 3%; margin-left: 5%;">
+        <canvas baseChart 
+              [data]="covidData" 
+              [type]="'bar'"
+              [options]="chartOption1"
+            >
+        </canvas>
+      </div>
+
+      <div style="border:1px solid black;width:60%; height: 20%; margin-top: 3%; margin-left: 20%;">
+        <canvas baseChart
+              [data]="covidData2"
+              [type]="'pie'"
+              [options]="chartOption2"
+        >
+        </canvas>
+      </div>
+
+
+    </div>
+</div>
+  
+
+  
+</body>
+  
+
+  
